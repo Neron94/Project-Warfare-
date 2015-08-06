@@ -15,23 +15,26 @@ public class TankController : MonoBehaviour {
 	public float deadzone = 20;
 	public GameObject rayer;
 	public int range=1000;
+    
 
 
    
 	void Update () {
 
+        cross = cros2s.transform.position;
 
 		if(Input.GetMouseButton(0))
 		{
-			Vector3 direction = rayer.transform.TransformDirection(Vector3.up);
+			Vector3 direction = rayer.transform.TransformDirection();
 			RaycastHit hit;
 			Debug.DrawRay(rayer.transform.position, direction, Color.yellow);
 			if (Physics.Raycast(rayer.transform.position, direction, out hit , range)){
 
-				if(hit.collider.gameObject.name==("Enemy"))
+				if(hit.collider.gameObject.tag ==("Enemy"))
 				{
 					Destroy(hit.collider.gameObject);
-					Debug.Log("Destroy");
+					Debug.Log("Enemy Down");
+                    
 				}
 			}
 		}
